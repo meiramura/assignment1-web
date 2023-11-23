@@ -78,28 +78,13 @@
     const newUserPasswordInput = document.getElementById("newUserPassword");
     const userDataList = document.getElementById('userDataList');
 
-    // Check if the admin is logged in
-    let isAdminLoggedIn = false;
+    let isAdminLoggedIn = true;
 
-    adminLoginButton.addEventListener("click", () => {
-        const username = adminUsernameInput.value;
-        const password = adminPasswordInput.value;
-
-        // Simulated authentication (you should replace this with actual authentication logic)
-        if (username === "admin" && password === "password") {
-            isAdminLoggedIn = true;
-            adminContainer.style.display = "none";
-            userListContainer.style.display = "block";
-            userActions.style.display = "block"; // Show user actions section
-            displayUserList();
-        }
-    });
-
+  
     const userDataArray = JSON.parse(localStorage.getItem('userData')) || [];
 
-    // Display user data in the table
     function displayUserList() {
-        userDataList.innerHTML = ''; // Clear previous data
+        userDataList.innerHTML = ''; 
 
         userDataArray.forEach((userData, index) => {
             const row = document.createElement('tr');

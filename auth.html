@@ -11,6 +11,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <script>
+
+        function submitForm() {
+            const emailInput = document.getElementById('emailInput');
+            const passwordInput = document.getElementById('passwordInput');
+
+            // Collect user data
+            const userData = {
+                email: emailInput.value,
+                password: passwordInput.value
+            };
+
+            const adminEmailInput = emailInput.value
+            const adminPassInput = passwordInput.value
+            
+            if (adminEmailInput == "admin@aa.ru" && adminPassInput == "password") {
+                window.location.href = 'admin.html';
+            }
+            else {
+                window.location.href = 'index.html';
+            }
+            return false;
+        }
+
+
         document.addEventListener("DOMContentLoaded", function () {
             const emailInput = document.getElementById('emailInput');
             const passwordInput = document.getElementById('passwordInput');
@@ -64,7 +88,7 @@
                 <a href="#" class="">Forgot password?</a>
             </div>
         </div>
-        <button type="submit">Log in</button>
+        <button type="submit" onclick="return submitForm()">Log in</button>
         <p style="color: #5D6169;">Don’t have an account?<a href="signup.html" style="margin-left:5px;">Sign up for free </a></p>
     </form>
 </div>
