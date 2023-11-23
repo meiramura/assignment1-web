@@ -19,76 +19,53 @@
 
     <nav class = "navbar navbar-expand-md sticky-top bg-white">
         <div class = "container-fluid">
-        <div class = "collapse navbar-collapse">
-            <ul class = "navbar-nav fw-bold mx-auto gap-5 ">
-                <li class = "nav-item text-decoration-none"><a class = "text-black" href="#">Home</a></li>
-                <li class = "nav-item text-decoration-none"><a class = "text-black" href="#">About</a></li>
-                <li class = "nav-item text-decoration-none"><a class = "text-black" href="#">Sale</a></li>
-            </ul>
-            <div class = "navbar-brand">
-                <a href = "index.html">
-                    <img alt="" src="logo.png">
-                </a>
-            </div>
-            <div class = "navbar mx-auto gap-5">
-                <div class = "dropdown search">
-                    <a class="btn dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-search text-black"></i>
+            <div class = "collapse navbar-collapse">
+                <ul class = "navbar-nav fw-bold mx-auto gap-5 ">
+                    <li class = "nav-item text-decoration-none"><a class = "text-black" href="#">Home</a></li>
+                    <li class = "nav-item text-decoration-none"><a class = "text-black" href="#about">About</a></li>
+                    <li class = "nav-item text-decoration-none"><a class = "text-black" href="#sale">Sale</a></li>
+                </ul>
+                <div class = "navbar-brand">
+                    <a href = "index.html">
+                        <img alt="" src="logo.png">
                     </a>
-                    <div class = "dropdown-menu">
+                </div>
+                <div class = "navbar mx-auto gap-5">
+                    <div class = "dropdown search">
+                        <a class="btn dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-search text-black"></i>
+                        </a>
+                        <div class = "dropdown-menu">
                             <div class = "dropdown-item search-form">
                                 <input type = "search" id = "search-box" placeholder="search here">
                                 <label class="fas fa-search" for = "search-box"></label>
                             </div>
+                        </div>
                     </div>
-                </div>
-                <div class="auth">
-                    <a class= "btn dropdown" role = "button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class = "fa-solid fa-user text-black"></i>
-                    </a>
+                    <div class="auth">
+                        <a class= "btn dropdown" role = "button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class = "fa-solid fa-user text-black"></i>
+                        </a>
                         <div class="dropdown-menu" aria-labelledby="userDropdown">
                             <a class="dropdown-item" href="auth.html">Log In</a>
+                        </div>
+                    </div>
+                    <div>
+                        <button id = "viewCart" data-toggle="modal" data-target="#cartModal" class="fa-solid fa-cart-shopping text-black">
+                            <span id="cartItemCount" style="display: none;"><0</span>
+                        </button>
                     </div>
                 </div>
-                <div>
-                    <button id = "viewCart" data-toggle="modal" data-target="#cartModal" class="fa-solid fa-cart-shopping text-black">
-                        <span id="cartItemCount" style="display: none;"><0</span>
-                    </button>
-                </div>
-            </div>
 
-        </div>
+            </div>
         </div>
     </nav>
+
 
 
 </head>
 <body>
 
-<script>
-
-
-    let currentIndex = 0;
-    let images = ["photo1.jpg", "photo2.jpg", "photo3.jpg"];
-
-    function nextImage() {
-        currentIndex = (currentIndex + 1) % images.length;
-        updateImage();
-    }
-
-    function prevImage() {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        updateImage();
-    }
-
-    function updateImage() {
-        const imageElement = document.getElementById("productImage");
-        imageElement.src = images[currentIndex];
-    }
-
-    updateImage();
-
-</script>
     <section class = "page">
         <div class = "page-text">
             <h2 class = "display-4 text-white"><em>New Collection</em></h2>
@@ -101,16 +78,10 @@
             <h1>-70% Discount For&nbsp;<em class = "text-danger pr-5">NB-2002r!</em></h1>
             <button class = "button"><b>Add to cart</b></button>
         </div>
-
-        <div class = "model">
-            <img id = "productImage" src = "photo1.jpg" alt = "">
-            <button onclick="prevImage()">Previous</button>
-            <button onclick="nextImage()">Next</button>
-        </div>
-
+        <div class = "model"><img src = "nb.jpg"></div>
     </div>
 
-    <section>
+    <section id = "sale">
 
 
 
@@ -119,6 +90,7 @@
             <div id="countdown" class="countdown"></div>
         </div>
         <script>
+
             let countdown = 86400;
             let countdownElement = document.getElementById("countdown");
 
@@ -142,92 +114,110 @@
 
         <div class = "container mb-5 pb-5">
             <div class = "row">
-                <div class = "col-lg-4 col-md-6 col-sm-12">
+                <div class = "col-lg-4 col-md-6 col-sm-12 product">
                     <img class = "img-fluid" src = "photo4.jpg" alt = "">
                     <h3>Baggy Zipper Hoodie</h3>
                     <div class = "price">
                         <span class="discounted">$12.49</span>
                         <span class="original">$25.99</span>
-                        <button class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
+                        <button onclick="showPopup()" class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
                         <input type="number" class="quantity" value="1" min="1">
                     </div>
-
                 </div>
 
 
-                <div class = "col-lg-4 col-md-6 col-sm-12">
+                <div class = "col-lg-4 col-md-6 col-sm-12 product">
                     <img class = "img-fluid" src = "photo1.jpg" alt = "">
                     <h3>Baggy Zipper Hoodie</h3>
                     <div class = "price">
                         <span class="discounted">$12.49</span>
                         <span class="original">$25.99</span>
-                        <button class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
+                        <button onclick="showPopup()" class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
                         <input type="number" class="quantity" value="1" min="1">
                     </div>
                 </div>
 
 
-                <div class = "col-lg-4 col-md-6 col-sm-12">
+                <div class = "col-lg-4 col-md-6 col-sm-12 product">
                     <img class = "img-fluid" src = "photo3.jpg" alt = "">
                     <h3>Baggy Zipper Hoodie</h3>
                     <div class = "price">
                         <span class="discounted">$12.49</span>
                         <span class="original">$25.99</span>
-                        <button class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
+                        <button onclick="showPopup()" class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
                         <input type="number" class="quantity" value="1" min="1">
                     </div>
                 </div>
 
 
-                <div class = "col-lg-4 col-md-6 col-sm-12">
+                <div class = "col-lg-4 col-md-6 col-sm-12 product">
                     <img class = "img-fluid" src = "nb.jpg" alt = "">
                     <h3>Baggy Zipper Hoodie</h3>
                     <div class = "price">
                         <span class="discounted">$12.49</span>
                         <span class="original">$25.99</span>
-                        <button class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
+                        <button onclick="showPopup()" class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
                         <input type="number" class="quantity" value="1" min="1">
                     </div>
                 </div>
 
 
-                <div class = "col-lg-4 col-md-6 col-sm-12">
+                <div class = "col-lg-4 col-md-6 col-sm-12 product">
                     <img class = "img-fluid" src = "photo2.jpg" alt = "">
                     <h3>Baggy Zipper Hoodie</h3>
                     <div class = "price">
                         <span class="discounted">$12.49</span>
                         <span class="original">$25.99</span>
-                        <button class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
+                        <button onclick="showPopup()" class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
                         <input type="number" class="quantity" value="1" min="1">
                     </div>
                 </div>
 
 
-                <div class = "col-lg-4 col-md-6 col-sm-12">
+                <div class = "col-lg-4 col-md-6 col-sm-12 ">
                     <img class = "img-fluid" src = "photo6.jpg" alt = "">
                     <h3>Baggy Zipper Hoodie</h3>
                     <div class = "price">
                         <span class="discounted">$12.49</span>
                         <span class="original">$25.99</span>
-                        <button class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
+                        <button onclick="showPopup()" class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
                         <input type="number" class="quantity" value="1" min="1">
                     </div>
                 </div>
             </div>
+            <div id="popup">
+                <div id="tick">✓</div>
+            </div>
+
+
+            <script>
+                function showPopup() {
+                    var popup = document.getElementById('popup');
+                    popup.classList.add('show');
+
+                    setTimeout(function() {
+                        popup.classList.remove('show');
+                    }, 2000); // Adjust the duration as needed
+                }
+            </script>
         </div>
 
         <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
+
                         <h5 class="modal-title" id="cartModalLabel">Your Shopping Cart</h5>
                         <span id="totalCost" class = "text-white"></span>
                     </div>
+
                     <div class="modal-body">
                         <ul id="cartItems">
-                            
+                            <!-- Cart items will be displayed here -->
+
                         </ul>
                     </div>
+
                     <div class="modal-footer">
                         <button id="checkoutButton" class="btn bg-primary" onclick="clickHidden()">Checkout</button>
                         <button type="button" class="btn bg-black" data-dismiss="modal">Close</button>
@@ -238,6 +228,7 @@
 
                 </div>
             </div>
+
         </div>
         <script>
             function getShoppingCartFromLocalStorage() {
@@ -249,7 +240,19 @@
             }
 
             const shoppingCart = getShoppingCartFromLocalStorage();
+            function updateCartItemCountOnLoad() {
+                const cartItemCountElement = document.getElementById("cartItemCount");
+                const totalItems = shoppingCart.reduce((total, item) => total + item.quantity, 0);
+                cartItemCountElement.innerText = totalItems.toString();
 
+                if (totalItems > 0) {
+                    cartItemCountElement.style.display = "inline-block";
+                } else {
+                    cartItemCountElement.style.display = "none";
+                }
+            }
+
+            updateCartItemCountOnLoad();
             function updateCartDisplay() {
                 const cartItems = document.getElementById("cartItems");
                 while (cartItems.firstChild) {
@@ -266,12 +269,12 @@
                     const removeButton = document.createElement("button");
                     removeButton.textContent = "Remove";
                     removeButton.addEventListener("click", function() {
-                        shoppingCart.splice(index, 1);
-                        saveShoppingCartToLocalStorage(shoppingCart); 
-                        updateCartDisplay(); 
-                        if (cartItemCount > 0) {
-                            cartItemCount--;
-                            updateCartItemCount();
+                            shoppingCart.splice(index, 1);
+                            saveShoppingCartToLocalStorage(shoppingCart);
+                            updateCartDisplay();
+                            if (cartItemCount > 0) {
+                                cartItemCount--;
+                                updateCartItemCount();
                             }
                         }
                     );
@@ -293,7 +296,7 @@
                         quantity: parseInt(document.querySelectorAll(".quantity")[index].value),
                     };
                     shoppingCart.push(itemDetails);
-                    saveShoppingCartToLocalStorage(shoppingCart); 
+                    saveShoppingCartToLocalStorage(shoppingCart);
                     updateCartItemCount();
                 });
             });
@@ -302,13 +305,6 @@
                 updateCartDisplay();
             });
 
-            const cartButtons = document.querySelectorAll(".cart");
-
-            cartButtons.forEach(function(button) {
-                button.addEventListener("click", function() {
-                    alert("Item added to the cart!");
-                });
-            });
             function calculateTotalPrice() {
                 const totalPriceElement = document.getElementById("totalCost");
                 const totalPrice = shoppingCart.reduce((total, item) => {
@@ -355,7 +351,7 @@
         </script>
 
     </section>
-    <footer>
+    <footer id = "about">
 
         <div class = "footer">
             <blockquote class = "d-flex justify-content-center">
