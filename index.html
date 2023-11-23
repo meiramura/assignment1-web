@@ -3,155 +3,375 @@
 <head>
     <script src="https://kit.fontawesome.com/6e9f42f0cc.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
-    <title>epicenter</title>
-    <header>
-        <div class = "container">
-            <ul class = "navbar">
-                <li class = "nav-item"><a href="#">Home</a></li>
-                <li class = "nav-item"><a href="#">About</a></li>
-                <li class = "nav-item"><a href="#">Sale</a></li>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>proekt</title>
+
+
+    <nav class = "navbar navbar-expand-md sticky-top bg-white">
+        <div class = "container-fluid">
+        <div class = "collapse navbar-collapse">
+            <ul class = "navbar-nav fw-bold mx-auto gap-5 ">
+                <li class = "nav-item text-decoration-none"><a class = "text-black" href="#">Home</a></li>
+                <li class = "nav-item text-decoration-none"><a class = "text-black" href="#">About</a></li>
+                <li class = "nav-item text-decoration-none"><a class = "text-black" href="#">Sale</a></li>
             </ul>
-            <div class = "logo">
-                <a href = "#">
+            <div class = "navbar-brand">
+                <a href = "index.html">
                     <img alt="" src="logo.png">
                 </a>
             </div>
-            <div class = "icons">
-                <div class = "search">
-                        <i class="fa-solid fa-search" style="color: #000000;"></i>
-                </div>
-                <div class = "user">
-                    <a href = "auth.html">
-                        <i class="fa-solid fa-user" style="color: #000000;"></i>
+            <div class = "navbar mx-auto gap-5">
+                <div class = "dropdown search">
+                    <a class="btn dropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-search text-black"></i>
                     </a>
+                    <div class = "dropdown-menu">
+                            <div class = "dropdown-item search-form">
+                                <input type = "search" id = "search-box" placeholder="search here">
+                                <label class="fas fa-search" for = "search-box"></label>
+                            </div>
+                    </div>
                 </div>
-                <div class = "cart">
-                    <a href = "#">
-                        <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
+                <div class="auth">
+                    <a class= "btn dropdown" role = "button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class = "fa-solid fa-user text-black"></i>
                     </a>
+                        <div class="dropdown-menu" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="auth.html">Log In</a>
+                            <a class="dropdown-item" href="signup.html">Sign Up</a>
+                            <a class="dropdown-item" href="admin.html">Admin Panel</a>
+                    </div>
+                </div>
+                <div>
+                    <button id = "viewCart" data-toggle="modal" data-target="#cartModal" class="fa-solid fa-cart-shopping text-black"></button>
                 </div>
             </div>
 
-            <div class = "search-form">
-                <input type = "search" id = "search-box" placeholder="search here">
-                <label class="fas fa-search" for = "search-box"></label>
-            </div>
         </div>
-    </header>
+        </div>
+    </nav>
+
 
 </head>
 <body>
+
+<script>
+
+
+    let currentIndex = 0;
+    let images = ["photo1.jpg", "photo2.jpg", "photo3.jpg"];
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImage();
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateImage();
+    }
+
+    function updateImage() {
+        const imageElement = document.getElementById("productImage");
+        imageElement.src = images[currentIndex];
+    }
+
+    // Call updateImage when the page loads initially
+    updateImage();
+
+</script>
     <section class = "page">
         <div class = "page-text">
-            <h6>New Collection</h6>
-            <h5>Check Out!</h5>
+            <h2 class = "display-4 text-white"><em>New Collection</em></h2>
+            <h1 class = "display-3 text-black">Check Out!</h1>
         </div>
 
     </section>
-    <div class = "content">
-        <div class = "new">
-            <h1 class = "text">-70% Discount For&nbsp;<i>NB-2002r!</i></h1>
+    <div class = "content d-flex justify-content-center align-items-center position-relative">
+        <div class = "d-block justify-content-center position-relative align-items-center">
+            <h1>-70% Discount For&nbsp;<em class = "text-danger pr-5">NB-2002r!</em></h1>
             <button class = "button"><b>Add to cart</b></button>
         </div>
+
         <div class = "model">
-            <img src = "nb.jpg" alt = "">
+            <img id = "productImage" src = "photo1.jpg" alt = "">
+            <button onclick="prevImage()">Previous</button>
+            <button onclick="nextImage()">Next</button>
         </div>
+
     </div>
 
-    <section class = "sale" id = "sale">
-        <h1 class = "heading">For&nbsp;<span>Sale</span></h1>
-        <div class = "box-container">
-            <div class = "box">
-                <div class = "product">
-                    <img src = "photo4.jpg" alt = "">
-                    <h3>Baggy Zipper Hoodie</h3>
-                </div>
-
-                <div class = "price">$12.49 <span>$25.99</span>
-                    <a href = "#"><i class="fa-solid fa-cart-shopping" style="color: #000000;"></i></a>
-                </div>
-
-            </div>
-            <div class = "box">
-                <div class = "product">
-                    <img src = "photo1.jpg" alt = "">
-                    <h3>Baggy Zipper Hoodie</h3>
-                </div>
-
-                <div class = "price">$12.49 <span>$25.99</span>
-                    <a href = "#"><i class="fa-solid fa-cart-shopping" style="color: #000000;"></i></a>
-                </div>
-
-            </div>
-            <div class = "box">
-                <div class = "product">
-                    <img src = "photo3.jpg" alt = "">
-                    <h3>Baggy Zipper Hoodie</h3>
-                </div>
-
-                <div class = "price">$12.49 <span>$25.99</span>
-                    <a href = "#"><i class="fa-solid fa-cart-shopping" style="color: #000000;"></i></a>
-                </div>
-
-            </div>
-            <div class = "box">
-                <div class = "product">
-                    <img src = "nb.jpg" alt = "">
-                    <h3>Baggy Zipper Hoodie</h3>
-                </div>
-
-                <div class = "price">$12.49 <span>$25.99</span>
-                    <a href = "#"><i class="fa-solid fa-cart-shopping" style="color: #000000;"></i></a>
-                </div>
+    <section>
 
 
-            </div>
-            <div class = "box">
-                <div class = "product">
-                    <img src = "photo2.jpg" alt = "">
-                    <h2>Baggy Zipper Hoodie</h2>
-                </div>
 
-                <div class = "price">$12.49 <span>$25.99</span>
-                    <a href = "#"><i class="fa-solid fa-cart-shopping" style="color: #000000;"></i></a>
-                </div>
-
-            </div>
-            <div class = "box">
-                <div class = "product">
-                    <img src = "shoe.png" alt = "">
-                    <h3>Baggy Zipper Hoodie</h3>
-                </div>
-
-                <div class = "price">$12.49 <span>$25.99</span>
-                    <a href = "#"><i class="fa-solid fa-cart-shopping" style="color: #000000;"></i></a>
-                </div>
-
-            </div>
-
+        <h1 class = "display-1 justify-content-center d-flex p-5">For&nbsp;<span class = "text-danger">Sale</span></h1>
+        <div class="countdown-container">
+            <div id="countdown" class="countdown"></div>
         </div>
+        <script>
+            let countdown = 86400;
+            let countdownElement = document.getElementById("countdown");
+
+            function updateCountdown() {
+                const hours = Math.floor(countdown / 3600);
+                const minutes = Math.floor((countdown % 3600) / 60);
+                const seconds = countdown % 60;
+
+                countdownElement.innerText = `${hours}h ${minutes}m ${seconds}s`;
+
+                countdown--;
+
+                if (countdown < 0) {
+                    clearInterval(timer);
+                    alert("Flash sale has ended!");
+                }
+            }
+
+            let timer = setInterval(updateCountdown, 1000);
+        </script>
+
+        <div class = "container mb-5 pb-5">
+            <div class = "row">
+                <div class = "col-lg-4 col-md-6 col-sm-12">
+                    <img class = "img-fluid" src = "photo4.jpg" alt = "">
+                    <h3>Baggy Zipper Hoodie</h3>
+                    <div class = "price">
+                        <span class="discounted">$12.49</span>
+                        <span class="original">$25.99</span>
+                        <button class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
+                        <input type="number" class="quantity" value="1" min="1">
+                    </div>
+
+                </div>
+
+
+                <div class = "col-lg-4 col-md-6 col-sm-12">
+                    <img class = "img-fluid" src = "photo1.jpg" alt = "">
+                    <h3>Baggy Zipper Hoodie</h3>
+                    <div class = "price">
+                        <span class="discounted">$12.49</span>
+                        <span class="original">$25.99</span>
+                        <button class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
+                        <input type="number" class="quantity" value="1" min="1">
+                    </div>
+                </div>
+
+
+                <div class = "col-lg-4 col-md-6 col-sm-12">
+                    <img class = "img-fluid" src = "photo3.jpg" alt = "">
+                    <h3>Baggy Zipper Hoodie</h3>
+                    <div class = "price">
+                        <span class="discounted">$12.49</span>
+                        <span class="original">$25.99</span>
+                        <button class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
+                        <input type="number" class="quantity" value="1" min="1">
+                    </div>
+                </div>
+
+
+                <div class = "col-lg-4 col-md-6 col-sm-12">
+                    <img class = "img-fluid" src = "nb.jpg" alt = "">
+                    <h3>Baggy Zipper Hoodie</h3>
+                    <div class = "price">
+                        <span class="discounted">$12.49</span>
+                        <span class="original">$25.99</span>
+                        <button class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
+                        <input type="number" class="quantity" value="1" min="1">
+                    </div>
+                </div>
+
+
+                <div class = "col-lg-4 col-md-6 col-sm-12">
+                    <img class = "img-fluid" src = "photo2.jpg" alt = "">
+                    <h3>Baggy Zipper Hoodie</h3>
+                    <div class = "price">
+                        <span class="discounted">$12.49</span>
+                        <span class="original">$25.99</span>
+                        <button class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
+                        <input type="number" class="quantity" value="1" min="1">
+                    </div>
+                </div>
+
+
+                <div class = "col-lg-4 col-md-6 col-sm-12">
+                    <img class = "img-fluid" src = "photo6.jpg" alt = "">
+                    <h3>Baggy Zipper Hoodie</h3>
+                    <div class = "price">
+                        <span class="discounted">$12.49</span>
+                        <span class="original">$25.99</span>
+                        <button class="add-to-cart cart fa-solid fa-cart-shopping" style="color: #000000;"></button>
+                        <input type="number" class="quantity" value="1" min="1">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h5 class="modal-title" id="cartModalLabel">Your Shopping Cart</h5>
+                        <span id="totalCost" class = "text-white"></span>
+                    </div>
+
+                    <div class="modal-body">
+                        <ul id="cartItems">
+                            <!-- Cart items will be displayed here -->
+
+                        </ul>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button id="checkoutButton" class="btn bg-primary" onclick="clickHidden()">Checkout</button>
+                        <button type="button" class="btn bg-black" data-dismiss="modal">Close</button>
+                    </div>
+                    <div id="confirmationMessage" class="alert alert-success hidden">
+                        Thank you for your purchase! Your order has been confirmed.
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <script>
+            // Function to get the shopping cart data from localStorage
+            function getShoppingCartFromLocalStorage() {
+                return JSON.parse(localStorage.getItem('shoppingCart')) || [];
+            }
+
+            // Function to save the shopping cart data to localStorage
+            function saveShoppingCartToLocalStorage(cartData) {
+                localStorage.setItem('shoppingCart', JSON.stringify(cartData));
+            }
+
+            const shoppingCart = getShoppingCartFromLocalStorage();
+
+            // Function to update the cart display
+            function updateCartDisplay() {
+                const cartItems = document.getElementById("cartItems");
+                while (cartItems.firstChild) {
+                    cartItems.removeChild(cartItems.firstChild);
+                }
+
+                shoppingCart.forEach((item, index) => {
+                    const cartItem = document.createElement("li");
+                    cartItem.textContent = ` ${item.title}, Price: ${item.price}, Quantity: ${item.quantity}`;
+                    const cartImage = document.createElement("img");
+                    cartImage.src = item.image;
+                    cartItem.appendChild(cartImage);
+
+                    // Add a "Remove" button for each item
+                    const removeButton = document.createElement("button");
+                    removeButton.textContent = "Remove";
+                    removeButton.addEventListener("click", function() {
+                        shoppingCart.splice(index, 1);
+                        saveShoppingCartToLocalStorage(shoppingCart); // Save the updated cart data
+                        updateCartDisplay(); // Update the cart display after removal
+                    });
+                    cartItem.appendChild(removeButton);
+
+                    cartItems.appendChild(cartItem);
+                });
+                calculateTotalPrice();
+            }
+
+            // Add click event listeners to all "Add to Cart" buttons
+            const addToCartButtons = document.querySelectorAll(".add-to-cart");
+            addToCartButtons.forEach((button, index) => {
+                button.addEventListener("click", function() {
+                    const itemDetails = {
+                        image: document.querySelectorAll(".img-fluid")[index].src,
+                        title: document.querySelectorAll("h3")[index].textContent,
+                        price: document.querySelectorAll(".discounted")[index].textContent,
+                        quantity: parseInt(document.querySelectorAll(".quantity")[index].value),
+                    };
+                    shoppingCart.push(itemDetails);
+                    saveShoppingCartToLocalStorage(shoppingCart); // Save the updated cart data
+                });
+            });
+
+            // Handle the "View Cart" button click
+            document.getElementById("viewCart").addEventListener("click", function() {
+                updateCartDisplay();
+            });
+
+            const cartButtons = document.querySelectorAll(".cart");
+
+            cartButtons.forEach(function(button) {
+                button.addEventListener("click", function() {
+                    alert("Item added to the cart!");
+                });
+            });
+            function calculateTotalPrice() {
+                const totalPriceElement = document.getElementById("totalCost");
+                const totalPrice = shoppingCart.reduce((total, item) => {
+                    const itemPrice = parseFloat(item.price.replace('$', ''));
+                    const itemQuantity = item.quantity;
+                    return total + (itemPrice * itemQuantity);
+                }, 0);
+                totalPriceElement.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+            }
+
+            // Function to update the total cost display
+            function updateTotalCostDisplay() {
+                const totalCostElement = document.getElementById('totalCost');
+                totalCostElement.textContent = `Total Price: $${calculateTotalPrice().toFixed(2)}`;
+            }
+
+            // Call the updateTotalCostDisplay function to initially display the total cost
+            updateTotalCostDisplay();
+
+
+
+            function clickHidden() {
+                const confirmationMessage = document.getElementById("confirmationMessage");
+
+                if (confirmationMessage.classList.contains("hidden")) {
+                    confirmationMessage.classList.remove("hidden");
+                    confirmationMessage.classList.add("visible");
+
+                    // Set a timeout to hide the message after 5 seconds (5000 milliseconds)
+                    setTimeout(function () {
+                        confirmationMessage.classList.remove("visible");
+                        confirmationMessage.classList.add("hidden");
+                    }, 3000);
+                } else {
+                    confirmationMessage.classList.remove("visible");
+                    confirmationMessage.classList.add("hidden");
+                }
+            }
+
+        </script>
+
     </section>
     <footer>
 
         <div class = "footer">
-            <blockquote>
+            <blockquote class = "d-flex justify-content-center">
                 <div class = "about_us">
-                    <h4 >About Us</h4>
+                    <h4 class = "text-white">About Us</h4>
                     <p>After school, Kamal took the girls to the old house. It was very old and very dirty too. There was rubbish everywhere. The windows were broken and the walls were damp. It was scary. Amy didn’t like it. There were paintings of zombies and skeletons on the walls.</p>
                 </div>
                 <div class = "contact_info">
-                    <h4 >Contact Info</h4>
+                    <h4 class = "text-white">Contact Info</h4>
                     <p>Address:Your address goes here, your demo address.
                         <br>Phone : +777 777 77 77
                         <br>Email : info@aitu.kz
                     </p>
                 </div>
                 <div class = "imp_links">
-                    <h4>For Customer</h4>
+                    <h4 class = "text-white">For Customer</h4>
                     <ul>
                         <li><a href="#">Discounts</a></li>
                         <li><a href="#">Delivery</a></li>
@@ -161,24 +381,25 @@
                     </ul>
                 </div>
                 <div class = "newsletter">
-                    <h4 >Newsletter</h4>
-                    <p>“We’re going to take photos for the school art competition,” said Kamal. Amy didn’t like it but she didn’t say anything. “Where’s Grant?” asked Tara. “Er, he’s buying more paint.” Kamal looked away quickly. Tara thought he looked suspicious. “It’s getting dark, can we go now?” said Amy. She didn’t like zombies.</p>
+                    <h4 class = "text-white">Newsletter</h4>
+                    <p>“We’re going to take photos for the school art competition,” said Kamal. Amy didn’t like it, but she didn’t say anything. “Where’s Grant?” asked Tara. “Er, he’s buying more paint.” Kamal looked away quickly. Tara thought he looked suspicious. “It’s getting dark, can we go now?” said Amy. She didn’t like zombies.</p>
                 </div>
             </blockquote>
             <h3>Stay With Us!</h3>
-            <ul class = "footer-icons">
-                <li><a href = "#"><i class="fa-brands fa-facebook"></i></a></li>
-                <li><a href = "#"><i class="fa-brands fa-instagram"></i></a></li>
-                <li><a href = "#"><i class="fa-brands fa-twitter"></i></a></li>
-                <li><a href = "#"><i class="fa-brands fa-linkedin"></i></a></li>
-                <li><a href = "#"><i class="fa-brands fa-pinterest"></i></a></li>
+            <ul class = "list-unstyled d-flex position-relative justify-content-center p-0">
+                <li><a class = "text-decoration-none fs-4 btn text-white" href = "#"><i class="fa-brands fa-facebook"></i></a></li>
+                <li><a class = "text-decoration-none fs-4 btn text-white" href = "#"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a class = "text-decoration-none fs-4 btn text-white" href = "#"><i class="fa-brands fa-twitter"></i></a></li>
+                <li><a class = "text-decoration-none fs-4 btn text-white" href = "#"><i class="fa-brands fa-linkedin"></i></a></li>
+                <li><a class = "text-decoration-none fs-4 btn text-white" href = "#"><i class="fa-brands fa-pinterest"></i></a></li>
             </ul>
-            <div class="footer-bottom">
+            <div class="pt-4 text-white d-flex justify-content-center">
                 <p>Copyright &copy;2023 epicenter, designed by Meirambek, Altynbek</p>
             </div>
         </div>
 
     </footer>
+
 </body>
 
 </html>
