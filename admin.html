@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .user-list li {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+        .admin-panel {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>Admin Panel</h1>
+</div>
+<div id="adminContainer" class = "container">
+    <h2>Login to Admin Panel</h2>
+    <input type="text" id="adminUsername" placeholder="Username">
+    <input type="password" id="adminPassword" placeholder="Password">
+    <button id="adminLoginButton">Login</button>
+</div>
+<div class="container admin-panel" id="userListContainer">
+    <h2>User Data</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+        </tr>
+        </thead>
+        <tbody id="userDataList"></tbody>
+    </table>
+</div>
+<div class="container" id="userActions" style="display: none;">
+    <h2>Manage Users</h2>
+    <input type="text" id="newUserName" placeholder="Name">
+    <input type="text" id="newUserEmail" placeholder="Email">
+    <input type="text" id="newUserPassword" placeholder="Password">
+    <button id="addUserButton">Add User</button>
+    <button id="saveChangesButton">Save Changes</button>
+    <button id="cancelChangesButton">Cancel</button>
+</div>
+
+<script>
+    const adminContainer = document.getElementById("adminContainer");
+    const userListContainer = document.getElementById("userListContainer");
+    const userActions = document.getElementById("userActions");
+    const adminUsernameInput = document.getElementById("adminUsername");
+    const adminPasswordInput = document.getElementById("adminPassword");
+    const adminLoginButton = document.getElementById("adminLoginButton");
+    const newUserButton = document.getElementById("addUserButton");
+    const saveChangesButton = document.getElementById("saveChangesButton");
+    const cancelChangesButton = document.getElementById("cancelChangesButton");
+    const newUserNameInput = document.getElementById("newUserName");
+    const newUserEmailInput = document.getElementById("newUserEmail");
+    const newUserPasswordInput = document.getElementById("newUserPassword");
+    const userDataList = document.getElementById('userDataList');
+
+    // Check if the admin is logged in
+    let isAdminLoggedIn = false;
+
+    adminLoginButton.addEventListener("click", () => {
+        const username = adminUsernameInput.value;
+        const password = adminPasswordInput.value;
+
+        // Simulated authentication (you should replace this with actual authentication logic)
+        if (username === "admin" && password === "password") {
+            isAdminLoggedIn = true;
+            adminContainer.style.display = "none";
+            userListContainer.style.display = "block";
+            userActions.style.display = "block"; // Show user actions section
+            displayUserList();
+        }
+    });
+
+    const userDataArray = JSON.parse(localStorage.getItem('userData')) || [];
+
+    // Display user data in the table
+    function displayUserList() {
+        userDataList.innerHTML = ''; // Clear previous data
+
+        userDataArray.forEach((userData, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                    <td>${userData.name}</td>
+                    <td>${userData.email}</td>
+                    <td>${userData.password}</td>
+                    <td>
+                        <button onclick="editUser(${index})">Edit</button>
+                        <button onclick="deleteUser(${index})">Delete</button>
+                    </td>
+                `;
+            userDataList.appendChild(row);
+        });
+    }
+
+    // Add a new user
+    newUserButton.addEventListener("click", () => {
+        const name = newUserNameInput.value;
+        const email = newUserEmailInput.value;
+        const password = newUserPasswordInput.value;
+
+        if (name && email && password) {
+            const newUser = {
+                name: name,
+                email: email,
+                password: password
+            };
+            userDataArray.push(newUser);
+            localStorage.setItem('userData', JSON.stringify(userDataArray));
+            newUserNameInput.value = '';
+            newUserEmailInput.value = '';
+            newUserPasswordInput.value = '';
+            displayUserList();
+        }
+    });
+
+    // Edit a user
+    let editingIndex = -1;
+
+    function editUser(index) {
+        editingIndex = index;
+        const user = userDataArray[index];
+        newUserNameInput.value = user.name;
+        newUserEmailInput.value = user.email;
+        newUserPasswordInput.value = user.password;
+        saveChangesButton.style.display = "inline";
+        cancelChangesButton.style.display = "inline";
+        displayUserList();
+    }
+
+    saveChangesButton.addEventListener("click", () => {
+        if (editingIndex >= 0) {
+            userDataArray[editingIndex] = {
+                name: newUserNameInput.value,
+                email: newUserEmailInput.value,
+                password: newUserPasswordInput.value
+            };
+            editingIndex = -1;
+            saveChangesButton.style.display = "none";
+            cancelChangesButton.style.display = "none";
+            newUserNameInput.value = '';
+            newUserEmailInput.value = '';
+            newUserPasswordInput.value = '';
+            localStorage.setItem('userData', JSON.stringify(userDataArray));
+            displayUserList();
+        }
+    });
+
+    cancelChangesButton.addEventListener("click", () => {
+        editingIndex = -1;
+        saveChangesButton.style.display = "none";
+        cancelChangesButton.style.display = "none";
+        newUserNameInput.value = '';
+        newUserEmailInput.value = '';
+        newUserPasswordInput.value = '';
+        displayUserList();
+    });
+
+    // Delete a user
+    function deleteUser(index) {
+        userDataArray.splice(index, 1);
+        localStorage.setItem('userData', JSON.stringify(userDataArray));
+        displayUserList();
+    }
+
+    if (isAdminLoggedIn) {
+        adminContainer.style.display = "none";
+        userListContainer.style.display = "block";
+        userActions.style.display = "block";
+        displayUserList();
+    }
+</script>
+</body>
+</html>
