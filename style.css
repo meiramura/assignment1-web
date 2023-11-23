@@ -26,73 +26,23 @@ body {
     font-family: 'Montserrat', sans-serif;
     z-index:1000;
 }
-
-.container {
-    display: flex;
-    width:100%;
-    list-style-type: none;
-    align-items: center;
-    position: fixed;
-    background-color: white;
-    padding: 10px 0 10px;
-    z-index: 20;
-    justify-content: center;
-    font-size: 18px;
-}
-.logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.navbar {
-    display: flex;
-    list-style: none;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-.nav-item {
-    font-weight: 700;
-    padding: 0 25px;
-
-}
-
-.nav-item a{
+a{
     text-decoration: none;
-    color: black;
 }
+
 
 .nav-item:hover{
     border-bottom: 2px solid black ;
 }
 
-.icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    list-style: none;
-}
-.icons i {
-    padding: 0 20px;
-    cursor: pointer;
-}
 
 .search-form{
-    position:absolute;
     right: 20%; top: 115%;
     width: 30rem;
     height:5rem;
     display: flex;
     align-items: center;
     transform: scaleY(0);
-}
-.search-form:after{
-    transform: scaleY(100%);
-    transition: transform .2s ease-out;
-}
-.search-form:hover:after{
-    transform: scaleY(100%);
 }
 .search-form input{
     font-size: 1.6rem;
@@ -106,44 +56,24 @@ body {
     cursor:pointer;
     font-size: 2.2rem;
     margin-right: 1.5rem;
-
 }
 .page{
-    height: 100vh;
+    height: 91vh;
     background-image: url("background.jpg");
     background-size: cover;
     display: flex;
-    margin:0;
-    position: relative;
 }
 .page .page-text{
     display: block;
     justify-content: center;
     align-items: center;
-    font-size:100px;
-    position: relative;
-    padding:350px 0 0 150px;
+    padding:350px 0 0 200px;
+}
 
-}
-.page-text h5{
-    color: white;
-    font-style: italic;
-}
 .content {
-    position:relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height:100vh;
 }
 
-
-.new{
-    display: block;
-    justify-content: center;
-    position: relative;
-    align-items: center;
-}
 
 .button {
     justify-content: center;
@@ -200,13 +130,8 @@ body {
         padding: 0 40px;
     }
 }
-.text i{
-    color: red;
-    padding-right:50px;
-}
 .model {
     width:30%;
-
 }
 .model img{
     width:100%;
@@ -223,7 +148,7 @@ footer {
     justify-content: center;
     width: 100%;
     position: relative;
-    padding: 15px;
+    padding: 25px 15px 15px 15px;
     background-color: black;
 }
 .footer h3{
@@ -233,85 +158,32 @@ footer {
     align-items: center;
     display: flex;
 }
-.text {
-    justify-content: center;
-}
-.footer-icons {
-    list-style: none;
-    display: flex;
-    position: relative;
-    justify-content: center;
-    padding:0;
-}
-.footer-icons a{
-    text-decoration: none;
-    color: white;
-    margin:0 15px;
-}
 
-.box-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    gap: 0.5rem;
-    padding:20px;
-}
-.box-container .box{
-    padding:2rem;
-    text-align: center;
-}
-.box-container .box img{
-    width: 20rem;
-}
-.box-container .box h3{
-    font-size: 1.5rem;
-    padding: 1rem 0;
-}
-.box-container .box .price{
+.price{
     font-size: 1.7rem;
     padding: .5rem 0;
     color: red;
 }
-.box-container .box .price span{
+.price .original{
     color:black;
     font-size: 1.3rem;
     text-decoration: line-through;
 }
-.box-container .box .product:hover{
-    opacity:0.5;
-    transition: linear .3s;
+.price i{
+    padding-left:200px;
+}
+.col-lg-4 .img-fluid {
+    transition:0.5s;
+}
+.col-lg-4 .img-fluid:hover{
+    opacity:0.7;
 }
 
-.box-container .box .price a{
-    padding-left: 65px;
-}
-.heading{
-    font-size:110px;
-    justify-content: center;
-    display: flex;
-    padding:10px;
-
-}
-.heading span{
-    color:red;
-}
-blockquote {
-    display:flex;
-    justify-content: center;
-}
-blockquote h4{
-    color:white;
-}
 blockquote p{
     line-height:1.8em;
     font-size: 15px;
     color: grey;
     text-transform: none;
-}
-.footer-bottom{
-    padding-top: 25px;
-    color: white;
-    display: flex;
-    justify-content: center;
 }
 
 .about_us{
@@ -344,5 +216,130 @@ blockquote p{
     width: 18%;
 }
 
+.countdown-container {
+    text-align: center;
+}
 
+.countdown {
+    font-size: 36px;
+    font-weight: bold;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.modal-body img {
+    max-width: 100%;
+    height: auto;
+}
+.modal-content {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff; /* Change the background color to match your design */
+    border-radius: 10px; /* Add border radius for rounded corners */
+}
+
+.modal-header {
+    background-color: black;
+    color: white;
+    border-radius: 15px 15px 0 0;
+}
+
+.modal-body li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid black; /* Add a bottom border for separation */
+}
+.modal-body li button {
+    width:80px;
+    background: red;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white; /* Change the color to a style that matches your design */
+}
+.modal-body {
+    background-color: #f5f5f5;
+}
+
+.modal-footer {
+    border-radius: 0 0 10px 10px;
+}
+
+.modal-footer button {
+    color: white;
+}
+
+
+
+#cartItems li {
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#cartItems img {
+    max-width: 200px;
+    max-height: 200px;
+    margin-right: 10px;
+}
+
+#cartModal {
+    background: #f9f9f9;
+    padding: 20px;
+}
+
+
+#cartItems {
+    list-style: none;
+    padding: 0;
+}
+
+.cartItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+
+
+#cartItems h4 {
+    font-size: 18px;
+    margin: 0;
+    color: #222;
+}
+
+#cartItems p {
+    font-size: 16px;
+    margin: 0;
+    color: #777;
+}
+
+#totalCost {
+    font-size: 24px;
+    font-weight: bold;
+    color: #222;
+    margin-top: 20px;
+    text-align: right;
+}
+
+.hidden {
+     visibility: hidden;
+     opacity: 0;
+     transition: visibility 0s, opacity 0.5s;
+ }
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.5s;
+}
 
