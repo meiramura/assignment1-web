@@ -6,15 +6,34 @@
     <title>auth</title>
     <link rel="stylesheet" href="auth.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const emailInput = document.getElementById('emailInput');
+            const passwordInput = document.getElementById('passwordInput');
+
+
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+
+            emailInput.addEventListener("input", validateEmail);
+            passwordInput.addEventListener("input", validatePassword);
+
+            function validateEmail() {
+                const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                emailError.textContent = emailPattern.test(emailInput.value) ? '' : 'Invalid email address';
+            }
+
+            function validatePassword() {
+                passwordError.textContent = passwordInput.value.length >= 6 ? '' : 'Password must be at least 6 characters';
+            }
+        });
+    </script>
 </head>
 <body>
-<div class="toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
 <div class="right">
     <img src="right.jpg" alt="" class="right-img">
 </div>
@@ -32,8 +51,10 @@
     <h3 class="signup-subtitle">Continue with Google or enter your details.</h3>
     <button class="google-account-btn"> <img src="google-icon.png" alt="" class="google-icon"><p>Log in with Google</p></button>
     <form action="" class="login-form">
-        <input type="email" name="" id="" placeholder="Email" class="login email">
-        <input type="password" placeholder="Password" class="login password">
+        <input type="email" name="" id="emailInput" placeholder="Email" class="login email">
+        <p id="emailError" class = "text-danger d-flex justify-content-start"></p>
+        <input type="password" id="passwordInput" placeholder="Password" class="login password">
+        <p id="passwordError" class = "text-danger d-flex justify-content-start"></p>
 
         <div class="checkbox-container">
             <div class="checkbox-left">
